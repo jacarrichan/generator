@@ -4,13 +4,13 @@
 
   <parent>
     <groupId>com.jacarrichan.generator</groupId>
-    <artifactId>mybatis-generator</artifactId>
+    <artifactId>mis-generator</artifactId>
     <version>1.3.2</version>
   </parent>
 
-  <artifactId>mybatis-generator-core</artifactId>
+  <artifactId>mis-generator-core</artifactId>
   <packaging>jar</packaging>
-  <name>MyBatis Generator Core</name>
+  <name>Mis Generator Core</name>
 
   <build>
     <!-- this build creates and installs an instrumented JAR file
@@ -128,6 +128,7 @@
       <plugin>
         <groupId>com.googlecode.maven-gcu-plugin</groupId>
         <artifactId>maven-gcu-plugin</artifactId>
+        <version>1.1</version>
         <executions>
           <execution>
             <phase>deploy</phase>
@@ -138,7 +139,7 @@
               <uploads>
                 <upload>
                   <file>${project.build.directory}/${project.artifactId}-${project.version}-bundle.zip</file>
-                  <summary>MyBatis Generator ${project.version}</summary>
+                  <summary>Mis Generator ${project.version}</summary>
                   <labels>
                     <label>Featured</label>
                     <label>Type-Archive</label>
