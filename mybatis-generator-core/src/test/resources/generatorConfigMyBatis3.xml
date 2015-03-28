@@ -7,7 +7,7 @@
   <!-- This should cause an error because sqlMapGenerator is required
        if there is no javaClientGenerator -->
   <context id="MyBatis3NoClient" targetRuntime="MyBatis3" defaultModelType="flat">
-    <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" />
+    <plugin type="com.jacarrichan.generator.plugins.EqualsHashCodePlugin" />
 
     <jdbcConnection driverClass="org.hsqldb.jdbcDriver"
         connectionURL="jdbc:hsqldb:mem:aname"
@@ -41,7 +41,7 @@
   <!-- This should cause an error because sqlMapGenerator is required
        for the XMLMAPPER client -->
   <context id="MyBatis3XMLMapper" targetRuntime="MyBatis3" defaultModelType="flat">
-    <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" />
+    <plugin type="com.jacarrichan.generator.plugins.EqualsHashCodePlugin" />
 
     <jdbcConnection driverClass="org.hsqldb.jdbcDriver"
         connectionURL="jdbc:hsqldb:mem:aname"
@@ -79,7 +79,7 @@
   <!-- This should cause an error because sqlMapGenerator is required
        for the MIXEDMAPPER client -->
   <context id="MyBatis3MixedMapper" targetRuntime="MyBatis3" defaultModelType="flat">
-    <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" />
+    <plugin type="com.jacarrichan.generator.plugins.EqualsHashCodePlugin" />
 
     <jdbcConnection driverClass="org.hsqldb.jdbcDriver"
         connectionURL="jdbc:hsqldb:mem:aname"
@@ -117,7 +117,7 @@
   <!-- This should not cause an error because sqlMapGenerator is not required
        for the ANNOTATEDMAPPER client -->
   <context id="MyBatis3AnnotatedMapper" targetRuntime="MyBatis3" defaultModelType="flat">
-    <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" />
+    <plugin type="com.jacarrichan.generator.plugins.EqualsHashCodePlugin" />
 
     <jdbcConnection driverClass="org.hsqldb.jdbcDriver"
         connectionURL="jdbc:hsqldb:mem:aname"

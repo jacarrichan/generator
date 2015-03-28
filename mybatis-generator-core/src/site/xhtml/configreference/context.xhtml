@@ -123,7 +123,7 @@ databases, or with different generation parameters, in the same run of MyBatis G
       </table>
       <p>If you want to create a different code generator in entirety,
          then use this value to specify the fully qualified name of a
-         class that extends <code>org.mybatis.generator.api.IntrospectedTable</code>.
+         class that extends <code>com.jacarrichan.generator.api.IntrospectedTable</code>.
          With this, you can create your own code generator and plug
          it in to the code generation engine.  See the
          <a href="../reference/extending.html">Extending MyBatis Generator</a> page for more information.
@@ -133,7 +133,7 @@ databases, or with different generation parameters, in the same run of MyBatis G
   <tr>
     <td valign="top">introspectedColumnImpl</td>
     <td>Use this value to specify the fully qualified name of a
-        class that extends <code>org.mybatis.generator.api.IntrospectedColumn</code>.
+        class that extends <code>com.jacarrichan.generator.api.IntrospectedColumn</code>.
         This is used if you want to change the behavior of the code generators
         when calculating column information.  See the
         <a href="../reference/extending.html">Extending MyBatis Generator</a> page for more information.</td>
@@ -171,7 +171,7 @@ specified with the <a href="property.html">&lt;property&gt;</a> child element:</
       list, you may force the column to be delimited with a
       <code>&lt;columnOverride&gt;</code>.<p/>
       <p>See the source code for the class
-      <code>org.mybatis.generator.internal.db.SqlReservedWords</code>
+      <code>com.jacarrichan.generator.internal.db.SqlReservedWords</code>
       for a list of keywords recognized by MBG.</p>
       <p><i>The default value is false.</i></p></td>
   </tr>
@@ -204,20 +204,20 @@ specified with the <a href="property.html">&lt;property&gt;</a> child element:</
   <tr>
     <td valign="top">javaFormatter</td>
     <td>Use this property to specify the full class name of a user provided formater for generated
-        Java files.  The class must implement <code>org.mybatis.generator.api.JavaFormatter</code>
+        Java files.  The class must implement <code>com.jacarrichan.generator.api.JavaFormatter</code>
         and must have a default (no argument) constructor.  Each context holds a single instance
         of the Java formatter.  The default Java formatter is
-        <code>org.mybatis.generator.api.dom.DefaultJavaFormatter</code>.  The default formatter
+        <code>com.jacarrichan.generator.api.dom.DefaultJavaFormatter</code>.  The default formatter
         uses the formatting built into the Java DOM classes.
     </td>
   </tr>
   <tr>
     <td valign="top">xmlFormatter</td>
     <td>Use this property to specify the full class name of a user provided formater for generated
-        XML files.  The class must implement <code>org.mybatis.generator.api.XmlFormatter</code>
+        XML files.  The class must implement <code>com.jacarrichan.generator.api.XmlFormatter</code>
         and must have a default (no argument) constructor.  Each context holds a single instance
         of the XML formatter.  The default XML formatter is
-        <code>org.mybatis.generator.api.dom.DefaultXmlFormatter</code>.  The default formatter
+        <code>com.jacarrichan.generator.api.dom.DefaultXmlFormatter</code>.  The default formatter
         uses the formatting built into the XML DOM classes.
     </td>
   </tr>

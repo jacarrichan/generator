@@ -18,7 +18,7 @@ elements are generated and are subject to regeneration (i.e. - they shouldn't be
 altered).  This element is an optional child element
 of the <a href="context.html">&lt;context&gt;</a> element.</p>
 
-<p>The default implementation is <code>org.mybatis.generator.internal.DefaultCommentGenerator</code>.
+<p>The default implementation is <code>com.jacarrichan.generator.internal.DefaultCommentGenerator</code>.
 The default implementation is designed for extensibility if you only want to modify
 certain behaviors.</p>
 
@@ -34,7 +34,7 @@ certain behaviors.</p>
   <tr>
     <td valign="top">type</td>
     <td>This may be used to specify the type of the user provided Comment Generator.
-        The class must implement the interface <code>org.mybatis.generator.api.CommentGenerator</code>
+        The class must implement the interface <code>com.jacarrichan.generator.api.CommentGenerator</code>
         and must have a public default constructor.  The attribute also accepts
         the special value DEFAULT in which case the default implementation will
         be used (this has the same effect as not specifying the type).</td>

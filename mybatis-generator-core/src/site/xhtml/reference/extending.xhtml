@@ -10,8 +10,8 @@
 <h1>Extending MyBatis Generator</h1>
 <p>MyBatis Generator (MBG) is designed for extensibility.  All code generation is performed using a
 simple DOM representation of Java and XML elements.</p>
-<p>The Java DOM is included in the package <code>org.mybatis.generator.api.dom.java</code></p>
-<p>The XML DOM is included in the package <code>org.mybatis.generator.api.dom.xml</code></p>
+<p>The Java DOM is included in the package <code>com.jacarrichan.generator.api.dom.java</code></p>
+<p>The XML DOM is included in the package <code>com.jacarrichan.generator.api.dom.xml</code></p>
 <p>These classes are not sufficient for every conceivable code generation possibility, but they are quite
 useful for generating simple to moderately complex Java and XML code.</p>
 
@@ -28,7 +28,7 @@ support mailing list at
 page, in most cases it will be far easier to extend MBG through the use of a plugin.  See the
 <a href="pluggingIn.html">Implementing Plugins</a> reference page for more information.</p>
 <p>The primary extension point for code generation is
-<code>org.mybatis.generator.api.IntrospectedTable</code>.  Implementing a code generator
+<code>com.jacarrichan.generator.api.IntrospectedTable</code>.  Implementing a code generator
 is a non-trivial task and should only be contemplated when you want to completely replace
 the code generation activities of MBG.  In the years since the original release of Abator,
 very few enhancement requests have appeared that could not be handled by a plugin.</p>
@@ -40,7 +40,7 @@ activities that can be accomplished with the different extensions.  If you
 need some help understanding the different options, feel free to ask a question
 on the user mailing list.</p>
 
-<h3>org.mybatis.generator.api.IntrospectedTable</h3>
+<h3>com.jacarrichan.generator.api.IntrospectedTable</h3>
 <p><code>IntrospectedTable</code> is an abstract class that can be extended to supply
 different code generators than the versions supplied with MBG.  A good example of
 such an implementation would be a FreeMarker or Velocity template based
@@ -48,7 +48,7 @@ implementation.  In most other instances, coding a plugin is the better way to g
 <p>If you choose to extend this class, you must supply code to generate Java and XML
 files.  You may choose to generated those files with the
 technology of your choice.  The base <code>IntrospectedTable</code> class holds an instance
-of <code>org.mybatis.generator.internal.rules.Rules</code> that can be queried
+of <code>com.jacarrichan.generator.internal.rules.Rules</code> that can be queried
 to determine many of the rules for code generation.</p>
 <p>MBG supplies several implementations of introspected table.  The implementation is chosen
 based on the value of the <code>targetRuntime</code> attribute of the
@@ -62,15 +62,15 @@ from scratch.  The following table shows the built in implementations:</p>
   </tr>
   <tr>
     <td>MyBatis3 (default)</td>
-    <td><code>org.mybatis.generator.codegen.mybatis3.IntrospectedTableMyBatis3Impl</code></td>
+    <td><code>com.jacarrichan.generator.codegen.mybatis3.IntrospectedTableMyBatis3Impl</code></td>
   </tr>
   <tr>
     <td>Ibatis2Java2</td>
-    <td><code>org.mybatis.generator.codegen.ibatis2.IntrospectedTableIbatis2Java2Impl</code></td>
+    <td><code>com.jacarrichan.generator.codegen.ibatis2.IntrospectedTableIbatis2Java2Impl</code></td>
   </tr>
   <tr>
     <td>Ibatis2Java5</td>
-    <td><code>org.mybatis.generator.codegen.ibatis2.IntrospectedTableIbatis2Java5Impl</code></td>
+    <td><code>com.jacarrichan.generator.codegen.ibatis2.IntrospectedTableIbatis2Java5Impl</code></td>
   </tr>
 </table>
 
@@ -78,7 +78,7 @@ from scratch.  The following table shows the built in implementations:</p>
 class name of your implementation with the <code>targetRuntime</code>
 attribute of the <code>&lt;context&gt;</code> element.</p>
 
-<h3>org.mybatis.generator.api.IntrospectedColumn</h3>
+<h3>com.jacarrichan.generator.api.IntrospectedColumn</h3>
 <p><code>IntrospectedColumn</code> is a class that holds information about a
 column as it is returned from database metadata.  In some rare
 circumstances it might be desirable to override this class to provide
@@ -88,10 +88,10 @@ generators.</p>
 class name of your implementation with the <code>introspectedColumnImpl</code>
 attribute of the <code>&lt;context&gt;</code> element.</p>
 
-<h3>org.mybatis.generator.api.JavaTypeResolver</h3>
+<h3>com.jacarrichan.generator.api.JavaTypeResolver</h3>
 <p>MBG calls methods in this interface to map JDBC types to Java types
    during database introspection.  The default implementation of this
-   interface is <code>org.mybatis.generator.internal.types.JavaTypeResolverDefaultImpl</code>.
+   interface is <code>com.jacarrichan.generator.internal.types.JavaTypeResolverDefaultImpl</code>.
    You can provide your own implementation, and the default implementation has
    been designed for extensibility.</p>
 
@@ -103,7 +103,7 @@ attribute of the <code>&lt;context&gt;</code> element.</p>
     &lt;/javaTypeResolver&gt;
 </pre>
 
-<h3>org.mybatis.generator.api.ShellCallback</h3>
+<h3>com.jacarrichan.generator.api.ShellCallback</h3>
 <p>MBG calls methods in this interface to perform functions that it cannot
    do on its own.  The most important of these functions are:</p>
 <ul>
@@ -113,7 +113,7 @@ attribute of the <code>&lt;context&gt;</code> element.</p>
 </ul>
 
 <p>The default implementation of this interface is
-   <code>org.mybatis.generator.internal.DefaultShellCallback</code>.  The default
+   <code>com.jacarrichan.generator.internal.DefaultShellCallback</code>.  The default
    implementation simply concatenates project and package together and creates
    the necessary package directories if needed.  The default implementation does not
    support merging of Java files, and will either overwrite or ignore files.</p>
@@ -124,17 +124,17 @@ attribute of the <code>&lt;context&gt;</code> element.</p>
    supports Java file merging when running in the Eclipse environment.</p>
 
 <p>To provide your own implementation, supply an instance of the interface
-   on the constructor to the <code>org.mybatis.generator.api.MyBatisGenerator</code>
+   on the constructor to the <code>com.jacarrichan.generator.api.MyBatisGenerator</code>
    object.  This cannot be configured through XML.  If you are providing
    your own implementation of this interface then we assume that you are
    also providing some collateral code (like a new Ant task) to run
    your implementation.</p>
 
-<h3>org.mybatis.generator.api.ProgressCallback</h3>
+<h3>com.jacarrichan.generator.api.ProgressCallback</h3>
 <p>MBG calls methods in this interface to report progress during the
    generation of files (a long running process).  The default implementation
    of this interface is
-   <code>org.mybatis.generator.internal.NullProgressCallback</code>
+   <code>com.jacarrichan.generator.internal.NullProgressCallback</code>
    which simply ignores all progress messages.  You can provide an
    implementation of this interface to support progress notifications and
    cancellation of code generation.</p>
@@ -144,7 +144,7 @@ attribute of the <code>&lt;context&gt;</code> element.</p>
    of this interface that hooks into Eclipse's progress notification system.</p>
 
 <p>To provide your own implementation, supply an instance of the interface
-   on one of the <code>org.mybatis.generator.api.MyBatisGenerator.generate()</code> method calls.
+   on one of the <code>com.jacarrichan.generator.api.MyBatisGenerator.generate()</code> method calls.
    This cannot be configured through XML.  Again, we assume that if you are providing
    your own implementation of this interface then you are
    also providing some collateral code (like a new Ant task or an IDE integration) to run

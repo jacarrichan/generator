@@ -38,7 +38,7 @@ MBG will use standard Java logging.</p>
 if Log4J is in the runtime classpath, you may specify the <code>-forceJavaLogging</code>
 command line argument, or specify the following line of code when running
 MBG from Java:</p>
-<p><code>org.mybatis.generator.logging.LogFactory.forceJavaLogging();</code></p>
+<p><code>com.jacarrichan.generator.logging.LogFactory.forceJavaLogging();</code></p>
 <p><b>Important:</b> You should specify the above line of code <i>before</i> any other MBG code.</p>
 
 <h2>Supplying an Alternate Implementation</h2>
@@ -46,13 +46,13 @@ MBG from Java:</p>
 standard Java logging, you may supply an alternate implementation of the key logging
 interfaces as follows:</p>
 <ol>
-  <li>Create an implementation of the <code>org.mybatis.generator.logging.Log</code>
+  <li>Create an implementation of the <code>com.jacarrichan.generator.logging.Log</code>
       interface that implements the key logging methods for you logging implementation
       of choice.</li>
-  <li>Create an implementation of the <code>org.mybatis.generator.logging.AbstractLogFactory</code>
+  <li>Create an implementation of the <code>com.jacarrichan.generator.logging.AbstractLogFactory</code>
       interface that will return instances of your <code>Log</code> implementation.</li>
   <li>Configure MBG to use your new LogFactory by calling the method
-      <code>org.mybatis.generator.logging.LogFactory.setLogFactory(AbstractLogFactory)</code>
+      <code>com.jacarrichan.generator.logging.LogFactory.setLogFactory(AbstractLogFactory)</code>
       and supplying an instance of your <code>AbstractLogFactory</code> implementation.</li>
 </ol>
 
@@ -68,7 +68,7 @@ log4j.appender.A1.layout=org.apache.log4j.PatternLayout
 log4j.appender.A1.layout.ConversionPattern=%-4r %-5p %c - %m%n
 
 # MBG logging configuration...
-log4j.logger.org.mybatis.generator=DEBUG
+log4j.logger.com.jacarrichan.generator=DEBUG
 </pre>
 <p>This file will instruct Log4J to write all MBG debug messages
 to the console.  To use this file:</p>
@@ -99,8 +99,8 @@ java.util.logging.ConsoleHandler.level = ALL
 # Set the default formatter for new ConsoleHandler instances
 java.util.logging.ConsoleHandler.formatter = java.util.logging.SimpleFormatter
 
-# Set the default logging level for the logger named org.mybatis.generator
-org.mybatis.generator.level = FINE
+# Set the default logging level for the logger named com.jacarrichan.generator
+com.jacarrichan.generator.level = FINE
 </pre>
 <p>This file will instruct Java to write all MBG debug messages
 to the console.  To use this file:</p>

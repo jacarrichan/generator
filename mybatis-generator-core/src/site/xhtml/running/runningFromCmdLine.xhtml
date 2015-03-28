@@ -9,7 +9,7 @@
 <body>
 <h1>Running MyBatis Generator From a Command Prompt</h1>
 <p>MyBatis Generator (MBG) may be run directly from a command prompt.  The JAR manifest includes the
-   name of the default class (<code>org.mybatis.generator.api.ShellRunner</code>)
+   name of the default class (<code>com.jacarrichan.generator.api.ShellRunner</code>)
    or you may specify it yourself.  The <code>ShellRunner</code>
    class accepts several arguments as detailed below:</p>
 <table border="1" cellspacing="0" cellpadding="5">
@@ -71,8 +71,8 @@
 <pre>
    java -jar mybatis-generator-core-x.x.x.jar -configfile generatorConfig.xml
    java -jar mybatis-generator-core-x.x.x.jar -configfile generatorConfig.xml -overwrite
-   java -cp mybatis-generator-core-x.x.x.jar org.mybatis.generator.api.ShellRunner -configfile generatorConfig.xml
-   java -cp mybatis-generator-core-x.x.x.jar org.mybatis.generator.api.ShellRunner -configfile generatorConfig.xml -overwrite
+   java -cp mybatis-generator-core-x.x.x.jar com.jacarrichan.generator.api.ShellRunner -configfile generatorConfig.xml
+   java -cp mybatis-generator-core-x.x.x.jar com.jacarrichan.generator.api.ShellRunner -configfile generatorConfig.xml -overwrite
 </pre>
 </body>
 </html>
