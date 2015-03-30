@@ -10,9 +10,8 @@
   <context id="MyBatis3AnnotatedMapper" targetRuntime="SystemMenu" defaultModelType="flat">
     <plugin type="com.jacarrichan.generator.plugins.EqualsHashCodePlugin" />
 
-    <jdbcConnection driverClass="org.hsqldb.jdbcDriver"
-        connectionURL="jdbc:hsqldb:mem:aname"
-        userId="sa" />
+   <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/test"
+     userId="root" password="123456"/>
 
     <javaModelGenerator targetPackage="ibatortest.generated.flat.java5.model"
         targetProject="target/generated-sources/mybatis-generator/mybatis3">
@@ -24,22 +23,6 @@
      	targetProject="target/generated-sources/mybatis-generator/mybatis3">
     </javaClientGenerator>
 
-    <table tableName="FieldsOnly" />
-    <table tableName="PKOnly" />
-    <table tableName="PKFields" alias="B" />
-    <table tableName="PKBlobs" />
-    <table tableName="PKFieldsBlobs" />
-    <table tableName="FieldsBlobs" />
-    <table tableName="awful table" alias="A">
-      <property name="useColumnIndexes" value="true"/>
-      <generatedKey column="CuStOmEr iD" sqlStatement="JDBC" />
-      <columnOverride column="first name" property="firstFirstName" />
-      <columnOverride column="first_name" property="secondFirstName" />
-      <columnOverride column="firstName" property="thirdFirstName" />
-      <columnOverride column="from" delimitedColumnName="true" >
-        <property name="fredswife" value="wilma"/>
-      </columnOverride>
-      <columnOverride column="active" javaType="boolean" />
-    </table>
+    <table tableName="system_menu" domainObjectName="SystemMenu"  />
   </context>
 </generatorConfiguration>

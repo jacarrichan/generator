@@ -57,7 +57,7 @@ public class RowBoundsPlugin extends PluginAdapter {
     @Override
     public boolean clientSelectByExampleWithBLOBsMethodGenerated(Method method,
             Interface interfaze, IntrospectedTable introspectedTable) {
-        if (introspectedTable.getTargetRuntime() == TargetRuntime.MYBATIS3) {
+        if (introspectedTable.getTargetRuntime() == TargetRuntime.SYSTEMMENU) {
             copyAndAddMethod(method, interfaze);
         }
         return true;
@@ -67,7 +67,7 @@ public class RowBoundsPlugin extends PluginAdapter {
     public boolean clientSelectByExampleWithoutBLOBsMethodGenerated(
             Method method, Interface interfaze,
             IntrospectedTable introspectedTable) {
-        if (introspectedTable.getTargetRuntime() == TargetRuntime.MYBATIS3) {
+        if (introspectedTable.getTargetRuntime() == TargetRuntime.SYSTEMMENU) {
             copyAndAddMethod(method, interfaze);
         }
         return true;
@@ -76,7 +76,7 @@ public class RowBoundsPlugin extends PluginAdapter {
     @Override
     public boolean sqlMapSelectByExampleWithoutBLOBsElementGenerated(
             XmlElement element, IntrospectedTable introspectedTable) {
-        if (introspectedTable.getTargetRuntime() == TargetRuntime.MYBATIS3) {
+        if (introspectedTable.getTargetRuntime() == TargetRuntime.SYSTEMMENU) {
             copyAndSaveElement(element, introspectedTable.getFullyQualifiedTable());
         }
         return true;
@@ -85,7 +85,7 @@ public class RowBoundsPlugin extends PluginAdapter {
     @Override
     public boolean sqlMapSelectByExampleWithBLOBsElementGenerated(
             XmlElement element, IntrospectedTable introspectedTable) {
-        if (introspectedTable.getTargetRuntime() == TargetRuntime.MYBATIS3) {
+        if (introspectedTable.getTargetRuntime() == TargetRuntime.SYSTEMMENU) {
             copyAndSaveElement(element, introspectedTable.getFullyQualifiedTable());
         }
         return true;

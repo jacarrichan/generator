@@ -21,30 +21,28 @@ public class MyBatisGeneratorTest {
         Configuration config = cp.parseConfiguration(this.getClass().getClassLoader().getResourceAsStream("generatorConfigMyBatis3.xml"));
             
         DefaultShellCallback shellCallback = new DefaultShellCallback(true);
-        
         try {
             MyBatisGenerator myBatisGenerator = new MyBatisGenerator(config, shellCallback, warnings);
             myBatisGenerator.generate(null);
         } catch (InvalidConfigurationException e) {
-            assertEquals(2, e.getErrors().size());
-            throw e;
+        	e.printStackTrace();
+        	throw e;
         }
+    }
+    @Test(expected=InvalidConfigurationException.class)
+    public void testGenerateSystemMenu() throws Exception {
+    	List<String> warnings = new ArrayList<String>();
+    	ConfigurationParser cp = new ConfigurationParser(warnings);
+    	Configuration config = cp.parseConfiguration(this.getClass().getClassLoader().getResourceAsStream("misGeneratorConfigSystemMenu.xml"));
+    	
+    	DefaultShellCallback shellCallback = new DefaultShellCallback(true);
+    	try {
+    		MyBatisGenerator myBatisGenerator = new MyBatisGenerator(config, shellCallback, warnings);
+    		myBatisGenerator.generate(null);
+    	} catch (InvalidConfigurationException e) {
+    		e.printStackTrace();
+    		throw e;
+    	}
     }
 
-    @Test(expected=InvalidConfigurationException.class)
-    public void testGenerateIbatis2() throws Exception {
-        List<String> warnings = new ArrayList<String>();
-        ConfigurationParser cp = new ConfigurationParser(warnings);
-        Configuration config = cp.parseConfiguration(this.getClass().getClassLoader().getResourceAsStream("generatorConfigIbatis2.xml"));
-            
-        DefaultShellCallback shellCallback = new DefaultShellCallback(true);
-        
-        try {
-            MyBatisGenerator myBatisGenerator = new MyBatisGenerator(config, shellCallback, warnings);
-            myBatisGenerator.generate(null);
-        } catch (InvalidConfigurationException e) {
-            assertEquals(1, e.getErrors().size());
-            throw e;
-        }
-    }
 }

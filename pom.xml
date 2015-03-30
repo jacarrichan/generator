@@ -17,6 +17,7 @@
 	<modules>
 		<module>mis-generator-core</module>
 		<module>mis-generator-maven-plugin</module>
+		<module>mis-generator-test-web</module>
 	</modules>
 
 	<properties>
@@ -255,6 +256,11 @@
 				<groupId>org.mybatis</groupId>
 				<artifactId>mybatis</artifactId>
 				<version>3.1.1</version>
+			</dependency>
+			<dependency>
+				<groupId>org.freemarker</groupId>
+				<artifactId>freemarker</artifactId>
+				<version>2.3.22</version>
 			</dependency>
 			<dependency>
 				<groupId>net.sourceforge.cobertura</groupId>

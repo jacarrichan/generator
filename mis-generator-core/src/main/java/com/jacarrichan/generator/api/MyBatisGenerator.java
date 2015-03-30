@@ -234,7 +234,9 @@ public class MyBatisGenerator {
             context.generateFiles(callback, generatedJavaFiles,
                     generatedXmlFiles, warnings);
         }
+        //======================================
 
+        //======================================
         // now save the files
         callback.saveStarted(generatedXmlFiles.size()
                 + generatedJavaFiles.size());

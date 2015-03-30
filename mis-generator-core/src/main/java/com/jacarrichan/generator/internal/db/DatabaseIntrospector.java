@@ -37,6 +37,8 @@ import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.jacarrichan.generator.api.Controller;
+import com.jacarrichan.generator.api.ControllerMethod;
 import com.jacarrichan.generator.api.FullyQualifiedTable;
 import com.jacarrichan.generator.api.IntrospectedColumn;
 import com.jacarrichan.generator.api.IntrospectedTable;
@@ -48,6 +50,7 @@ import com.jacarrichan.generator.config.GeneratedKey;
 import com.jacarrichan.generator.config.PropertyRegistry;
 import com.jacarrichan.generator.config.TableConfiguration;
 import com.jacarrichan.generator.internal.ObjectFactory;
+import com.jacarrichan.generator.internal.util.JavaBeansUtil;
 import com.jacarrichan.generator.logging.Log;
 import com.jacarrichan.generator.logging.LogFactory;
 
@@ -612,7 +615,6 @@ public class DatabaseIntrospector {
             for (IntrospectedColumn introspectedColumn : entry.getValue()) {
                 introspectedTable.addColumn(introspectedColumn);
             }
-
             calculatePrimaryKey(table, introspectedTable);
 
             answer.add(introspectedTable);
@@ -620,4 +622,54 @@ public class DatabaseIntrospector {
 
         return answer;
     }
+
+	public List<Controller> introspectController(ResultSet rs) throws SQLException {
+		List<String>  urls=new ArrayList<String>();
+		//找出URL
+		while (rs.next()) {
+			String menuUrl = rs.getString(1);
+			String url = menuUrl;
+			if (null == url) {
+				continue;
+			}
+			url = url.substring(0, url.indexOf("."));
+			if (null == url) {
+				continue;
+			}
+			//TODO  get json  or  html
+			url = url.substring(url.lastIndexOf("\"") + 1);
+			urls.add(url);
+		}
+		closeResultSet(rs);
+		//URL归类
+		Map<String,List<String>> controllers=new HashMap<String, List<String>>();
+		for (String url : urls) {
+			// system-user/index
+			String[] u=url.split("/");
+			String controllerUrl=u[0].trim();
+			String methodUrl=u[1].trim();
+			List<String> methods=controllers.get(controllerUrl);
+			if(null==methods){
+				methods=new ArrayList<String>();
+				controllers.put(controllerUrl, methods);
+			}
+			if(methods.contains(methodUrl)){
+				continue;
+			}
+			methods.add(methodUrl);
+		}
+		//转换为对象
+		Iterator<String> controllerUrls=controllers.keySet().iterator();
+		List<Controller> controllers2=new ArrayList<Controller>();
+		while(controllerUrls.hasNext()){
+			String controllerUrl = controllerUrls.next();
+			Controller controller=new Controller(controllerUrl);
+			List<String>  methodNames=controllers.get(controllerUrl);
+			for (String methodName : methodNames) {
+				controller.getMethodList().add(new ControllerMethod(methodName));
+			}
+			controllers2.add(controller);
+		}
+		return controllers2;
+	}
 }

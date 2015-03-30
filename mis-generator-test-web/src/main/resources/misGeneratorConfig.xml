@@ -4,9 +4,10 @@
  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 
 <generatorConfiguration>
-  <!-- This should cause an error because sqlMapGenerator is always required
-       for Ibatis2 -->
-  <context id="Ibatis2Java5" targetRuntime="Ibatis2Java5" defaultModelType="flat">
+
+  <!-- This should not cause an error because sqlMapGenerator is not required
+       for the ANNOTATEDMAPPER client -->
+  <context id="MyBatis3AnnotatedMapper" targetRuntime="MyBatis3" defaultModelType="flat">
     <plugin type="com.jacarrichan.generator.plugins.EqualsHashCodePlugin" />
 
     <jdbcConnection driverClass="org.hsqldb.jdbcDriver"
@@ -18,12 +19,11 @@
       <property name="enableSubPackages" value="true" />
       <property name="trimStrings" value="true" />
     </javaModelGenerator>
-
-    <javaClientGenerator type="GENERIC-CI" targetPackage="mbg.test.mb3.generated.flat.mapper"
-        targetProject="target/generated-sources/mybatis-generator/mybatis3">
-      <property name="enableSubPackages" value="true" />
-    </javaClientGenerator>
     
+    <javaClientGenerator type="ANNOTATEDMAPPER" targetPackage="ibatortest.generated.flat.java5.client"
+     	targetProject="target/generated-sources/mybatis-generator/mybatis3">
+    </javaClientGenerator>
+
     <table tableName="FieldsOnly" />
     <table tableName="PKOnly" />
     <table tableName="PKFields" alias="B" />

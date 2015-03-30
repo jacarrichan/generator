@@ -32,6 +32,7 @@ import com.jacarrichan.generator.api.JavaTypeResolver;
 import com.jacarrichan.generator.api.XmlFormatter;
 import com.jacarrichan.generator.api.dom.DefaultJavaFormatter;
 import com.jacarrichan.generator.api.dom.DefaultXmlFormatter;
+import com.jacarrichan.generator.codegen.systemmenu.IntrospectedTableSystemMenuImpl;
 import com.jacarrichan.generator.config.CommentGeneratorConfiguration;
 import com.jacarrichan.generator.config.Context;
 import com.jacarrichan.generator.config.PluginConfiguration;
@@ -290,16 +291,11 @@ public class ObjectFactory {
      */
     public static IntrospectedTable createIntrospectedTableForValidation(Context context) {
         String type = context.getTargetRuntime();
-//        if (!stringHasValue(type)) {
-//            type = IntrospectedTableMyBatis3Impl.class.getName();
-//        } else if ("Ibatis3".equalsIgnoreCase(type)) { //$NON-NLS-1$
-//            type = IntrospectedTableMyBatis3Impl.class.getName();
-//        } else if ("MyBatis3".equalsIgnoreCase(type)) { //$NON-NLS-1$
-//            type = IntrospectedTableMyBatis3Impl.class.getName();
-//        } else if ("MyBatis3Simple".equalsIgnoreCase(type)) { //$NON-NLS-1$
-//            type = IntrospectedTableMyBatis3SimpleImpl.class.getName();
-//        }
-
+        if (!stringHasValue(type)) {
+            type = IntrospectedTableSystemMenuImpl.class.getName();
+        } else if ("SystemMenu".equalsIgnoreCase(type)) { //$NON-NLS-1$
+        	type = IntrospectedTableSystemMenuImpl.class.getName();
+        }
         IntrospectedTable answer = (IntrospectedTable) createInternalObject(type);
         answer.setContext(context);
 

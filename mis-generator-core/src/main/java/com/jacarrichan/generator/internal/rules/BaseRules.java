@@ -257,7 +257,7 @@ public abstract class BaseRules implements Rules {
                 || tableConfiguration.isDeleteByExampleStatementEnabled()
                 || tableConfiguration.isCountByExampleStatementEnabled();
 
-        if (introspectedTable.getTargetRuntime() == TargetRuntime.IBATIS2) {
+        if (introspectedTable.getTargetRuntime() == TargetRuntime.TABLE) {
             rc |= tableConfiguration.isUpdateByExampleStatementEnabled();
         }
 
@@ -280,7 +280,7 @@ public abstract class BaseRules implements Rules {
             return false;
         }
         
-        return introspectedTable.getTargetRuntime() == TargetRuntime.MYBATIS3
+        return introspectedTable.getTargetRuntime() == TargetRuntime.SYSTEMMENU
                 && tableConfiguration.isUpdateByExampleStatementEnabled();
     }
 

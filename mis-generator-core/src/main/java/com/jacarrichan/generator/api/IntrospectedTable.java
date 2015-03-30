@@ -19,6 +19,7 @@ package com.jacarrichan.generator.api;
 import static com.jacarrichan.generator.internal.util.StringUtility.isTrue;
 import static com.jacarrichan.generator.internal.util.StringUtility.stringHasValue;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -50,7 +51,7 @@ import com.jacarrichan.generator.internal.rules.Rules;
  */
 public abstract class IntrospectedTable {
     public enum TargetRuntime {
-        IBATIS2, MYBATIS3
+        SYSTEMMENU,TABLE
     }
 
     protected enum InternalAttribute {
@@ -101,7 +102,8 @@ public abstract class IntrospectedTable {
     protected Rules rules;
     protected List<IntrospectedColumn> primaryKeyColumns;
     protected List<IntrospectedColumn> baseColumns;
-    protected List<IntrospectedColumn> blobColumns;
+    protected List<IntrospectedColumn> blobColumns; 
+    protected List<Controller> controllers; 
     protected TargetRuntime targetRuntime;
 
     /**
@@ -121,6 +123,7 @@ public abstract class IntrospectedTable {
         this.targetRuntime = targetRuntime;
         primaryKeyColumns = new ArrayList<IntrospectedColumn>();
         baseColumns = new ArrayList<IntrospectedColumn>();
+        controllers=new ArrayList<Controller>();
         blobColumns = new ArrayList<IntrospectedColumn>();
         attributes = new HashMap<String, Object>();
         internalAttributes = new HashMap<IntrospectedTable.InternalAttribute, String>();
@@ -1147,4 +1150,5 @@ public abstract class IntrospectedTable {
     public Context getContext() {
         return context;
     }
+
 }

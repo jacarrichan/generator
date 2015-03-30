@@ -56,9 +56,9 @@ public class MisGeneratorMojo extends AbstractMojo {
     private MavenProject project;
 
     /**
-     * @parameter expression="${mybatis.generator.outputDirectory}"
+     * @parameter expression="${mis.generator.outputDirectory}"
      *            default-value=
-     *            "${project.build.directory}/generated-sources/mybatis-generator"
+     *            "${project.build.directory}/generated-sources/mis-generator"
      * @required
      */
     private File outputDirectory;
@@ -66,9 +66,9 @@ public class MisGeneratorMojo extends AbstractMojo {
     /**
      * Location of the configuration file.
      * 
-     * @parameter expression="${mybatis.generator.configurationFile}"
+     * @parameter expression="${mis.generator.configurationFile}"
      *            default-value
-     *            ="${basedir}/src/main/resources/generatorConfig.xml"
+     *            ="${basedir}/src/main/resources/misGeneratorConfig.xml"
      * @required
      */
     private File configurationFile;
@@ -76,14 +76,14 @@ public class MisGeneratorMojo extends AbstractMojo {
     /**
      * Specifies whether the mojo writes progress messages to the log
      * 
-     * @parameter expression="${mybatis.generator.verbose}" default-value=false
+     * @parameter expression="${mis.generator.verbose}" default-value=false
      */
     private boolean verbose;
 
     /**
      * Specifies whether the mojo overwrites existing files. Default is false.
      * 
-     * @parameter expression="${mybatis.generator.overwrite}"
+     * @parameter expression="${mis.generator.overwrite}"
      *            default-value=false
      */
     private boolean overwrite;
@@ -93,49 +93,49 @@ public class MisGeneratorMojo extends AbstractMojo {
      * then no script will be run. If not null, then jdbcDriver, jdbcURL must be
      * supplied also, and jdbcUserId and jdbcPassword may be supplied.
      * 
-     * @parameter expression="${mybatis.generator.sqlScript}"
+     * @parameter expression="${mis.generator.sqlScript}"
      */
     private String sqlScript;
 
     /**
      * JDBC Driver to use if a sql.script.file is specified
      * 
-     * @parameter expression="${mybatis.generator.jdbcDriver}"
+     * @parameter expression="${mis.generator.jdbcDriver}"
      */
     private String jdbcDriver;
 
     /**
      * JDBC URL to use if a sql.script.file is specified
      * 
-     * @parameter expression="${mybatis.generator.jdbcURL}"
+     * @parameter expression="${mis.generator.jdbcURL}"
      */
     private String jdbcURL;
 
     /**
      * JDBC user ID to use if a sql.script.file is specified
      * 
-     * @parameter expression="${mybatis.generator.jdbcUserId}"
+     * @parameter expression="${mis.generator.jdbcUserId}"
      */
     private String jdbcUserId;
 
     /**
      * JDBC password to use if a sql.script.file is specified
      * 
-     * @parameter expression="${mybatis.generator.jdbcPassword}"
+     * @parameter expression="${mis.generator.jdbcPassword}"
      */
     private String jdbcPassword;
 
     /**
      * Comma delimited list of table names to generate
      * 
-     * @parameter expression="${mybatis.generator.tableNames}"
+     * @parameter expression="${mis.generator.tableNames}"
      */
     private String tableNames;
 
     /**
      * Comma delimited list of contexts to generate
      * 
-     * @parameter expression="${mybatis.generator.contexts}"
+     * @parameter expression="${mis.generator.contexts}"
      */
     private String contexts;
 
@@ -146,9 +146,10 @@ public class MisGeneratorMojo extends AbstractMojo {
         // is in the project's source tree, but the plugin classpath does not 
         // include the project classpath.
         @SuppressWarnings("unchecked")
-        List<Resource> resources = project.getResources();
+        List<Resource> resources = project.getTestResources();
         List<String> resourceDirectories = new ArrayList<String>();
         for (Resource resource: resources) {
+        	System.out.println(resource.getDirectory());
             resourceDirectories.add(resource.getDirectory());
         }
         ClassLoader cl = ClassloaderUtility.getCustomClassloader(resourceDirectories);
